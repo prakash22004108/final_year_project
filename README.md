@@ -13,6 +13,55 @@ This creates a **transparent → accountable → justice** pipeline.
 
 ---
 
+## 🚀 Use Cases  
+
+### 🟢 Use Case 1: Detecting Corruption in Public Works  
+
+**Scenario**  
+A citizen suspects that a road project in their village has not been constructed, even though government funds were released.  
+
+**Steps**  
+1. Citizen files RTI: *“How much money was sanctioned and spent on road construction in XYZ village in 2024?”*  
+2. AI **RTI Drafting Assistant** generates the request in correct RTI format.  
+3. Govt replies with documents (bills, completion certificates).  
+4. **OCR + Fraud Detection AI** checks the documents:  
+   - Finds duplicate bills.  
+   - Detects mismatched totals.  
+5. **IPC Mapping Engine** suggests:  
+   - IPC 420 (Cheating)  
+   - IPC 468 (Forgery)  
+   - IPC 409 (Breach of trust by public servant)  
+6. **Complaint Generator** drafts a corruption complaint for the Anti-Corruption Bureau.  
+
+**Outcome**  
+- Corruption in road projects is **exposed**.  
+- Citizen gets **legal empowerment** without needing a lawyer.  
+
+---
+
+### 🔵 Use Case 2: Fake Ration Card & Welfare Scam  
+
+**Scenario**  
+A citizen finds multiple fake names in the ration list of their village, indicating food grain scams.  
+
+**Steps**  
+1. Citizen files RTI: *“Provide list of beneficiaries under PDS in ABC village for 2024.”*  
+2. Govt replies with scanned ration card records.  
+3. **OCR + AI Fraud Detector** verifies with Aadhaar/voter list:  
+   - Detects duplicate/ghost entries.  
+   - Finds non-existent beneficiaries.  
+4. **IPC Mapping Engine** suggests:  
+   - IPC 420 (Cheating)  
+   - IPC 465 (Forgery)  
+   - IPC 120B (Conspiracy)  
+5. **Complaint Generator** drafts a police complaint attaching RTI evidence.  
+
+**Outcome**  
+- Fake ration card scam is **exposed**.  
+- Ensures **food grains reach genuine beneficiaries**.  
+- Stops **public money leakage**.  
+
+
 ## ⚡ Key Features
 
 ### 1. **RTI Drafting Assistant (Generative AI)**
