@@ -21,12 +21,22 @@ This literature survey summarizes significant Indian research contributions (jou
 
 These papers demonstrate Indian research efforts in AI-assisted legal analytics, judicial outcome prediction, IPC section identification, and fraud detection. AI techniques such as **ML, NLP, OCR, CNNs, and rule-based systems** have been applied to improve legal decision-making, automate tedious processes, and enhance transparency.
 
-Future research directions include:
-- Expanding datasets
-- Improving fairness and explainability
-- Integrating contextual legal knowledge
-- Applying hybrid models combining NLP, ML, and rule-based systems
-- Extending methods to additional Indian statutes and public sector domains
+## Future Research Directions
+
+- **Expanding Datasets:**  
+  Develop large-scale, open-access legal corpora that combine court judgments, RTI responses, and government circulars using automated **web scraping (BeautifulSoup, Scrapy)** and **OCR (Tesseract OCR, PaddleOCR)** for scanned documents. Employ **active learning** to continually label new data based on model uncertainty.
+
+- **Improving Fairness and Explainability:**  
+  Integrate **Explainable AI (XAI)** techniques such as **LIME**, **SHAP**, and **counterfactual reasoning models** to make predictions transparent and auditable. Use **bias-detection pipelines** to measure fairness metrics (e.g., demographic parity, equalized odds) across legal outcomes.
+
+- **Integrating Contextual Legal Knowledge:**  
+  Employ **Knowledge Graphs (Neo4j, RDF-based)** linked with **contextual embeddings (BERT, Legal-BERT, IndicBERT)** to embed cross-references between laws, case precedents, and RTI sections. Utilize **Graph Neural Networks (GNNs)** for relational reasoning across legal entities and documents.
+
+- **Applying Hybrid Models Combining NLP, ML, and Rule-based Systems:**  
+  Implement **hybrid pipelines** that combine **transformer-based text encoders (RoBERTa, GPT-based fine-tuning)** for semantic understanding with **rule-based logic engines (Prolog, SpaCy patterns)** for statutory clause enforcement. Use **ensemble learning** (stacking classifiers, voting mechanisms) to blend rule-based and data-driven models effectively.
+
+- **Extending Methods to Additional Indian Statutes and Public Sector Domains:**  
+  Expand research to **RTI analytics, environmental law, tax, and land disputes** using **multi-task learning architectures** that share embeddings across legal sub-domains. Incorporate **federated learning** to enable secure, decentralized model training across government departments while preserving citizen data privacy.
 
 ---
 
