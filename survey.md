@@ -2,7 +2,7 @@
 
 This literature survey summarizes significant Indian research contributions (journals, conferences) in AI/legal analytics. The table highlights techniques, domains, advantages, limitations, and future directions.
 
-| S.No. | Research Used | Technique(s) Used | Domain | Advantage(s) | Disadvantage(s) / Features | Future Direction |
+| S.No. | Author Details | Technique(s) Used | Domain | Advantage(s) | Disadvantage(s) / Features | Future Direction |
 |---|---|---|---|---|---|---|
 | 1 | Rahul Bharati (2024) – *Predictive Justice in Indian Courts* | Deep Neural Networks, SVM, NLP | Judicial case outcome forecasting | Achieves ~78.5% accuracy predicting case outcomes using 500K+ Indian court cases; integrates socio-legal variables | Requires large datasets; potential bias and interpretability issues | Improve fairness, interpretability, and include hybrid/explainable models |
 | 2 | Sugam Sharma et al. (2021) – *eLegPredict: Indian Supreme Court* | ML, Text-based Classification | Supreme Court decision prediction | Prototype predicts verdicts (~76% accuracy) on 3,072 cases | Limited dataset; “black-box” model; lacks explanations | Expand dataset; enhance explainability; extend to diverse case types |
