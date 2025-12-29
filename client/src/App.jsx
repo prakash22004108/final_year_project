@@ -8,6 +8,7 @@ import CreateRTI from './pages/CreateRTI';
 import ViewRTI from './pages/ViewRTI';
 import OfficialDashboard from './pages/OfficialDashboard';
 import RespondRTI from './pages/RespondRTI';
+import AdminDashboard from './pages/AdminDashboard';
 import { useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -28,6 +29,9 @@ function App() {
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/create-rti" element={<ProtectedRoute><CreateRTI /></ProtectedRoute>} />
         <Route path="/rti/:id" element={<ProtectedRoute><ViewRTI /></ProtectedRoute>} />
+        
+        {/* Admin Route */}
+        <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
         {/* Official Routes */}
         <Route path="/official/dashboard" element={<ProtectedRoute><OfficialDashboard /></ProtectedRoute>} />

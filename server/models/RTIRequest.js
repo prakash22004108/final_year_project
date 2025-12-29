@@ -25,7 +25,7 @@ const RTIRequestSchema = new mongoose.Schema({
     status: {
         type: String,
         default: 'Drafted', // Drafted, Submitted, Response Received, Analyzed
-        enum: ['Drafted', 'Submitted', 'Response Received', 'Analyzed']
+        enum: ['Drafted', 'Submitted', 'Response Received', 'Analyzed', 'Rejected']
     },
     responseDetails: {
         type: String, // Text of the response
@@ -44,6 +44,25 @@ const RTIRequestSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    // New Fields for Enhanced Tracking
+    tracking: [{
+        stage: String, // 'Drafted', 'Submitted', 'Officer Viewed', 'Data Checked', 'Response Received'
+        timestamp: { type: Date, default: Date.now },
+        completed: { type: Boolean, default: true }
+    }],
+    officerViewed: {
+        type: Boolean,
+        default: false
+    },
+    dataAvailability: {
+        status: String, // 'Available', 'Not Available', 'Partial'
+        source: String, // 'Public Records', 'Department Database', 'None'
+        checkedAt: Date,
+        fetchedData: mongoose.Schema.Types.Mixed, // Stores the full record snapshot (PublicWork or API Response)
+        log: [String], // Array of log messages like "Checking Internal DB...", "Found match."
+        emailDraft: String, // When data is missing, store the AI drafted email body
+        targetEmail: String // The department email to send to
     }
 });
 
