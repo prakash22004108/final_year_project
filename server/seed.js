@@ -13,8 +13,29 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(async () => {
         console.log('MongoDB Connected');
 
-        // 1. Create Admin/Citizen (Keep existing logic if needed, but for now we focus on data)
-        // ... (User creation logic skipped for brevity if not strictly needed, but let's assume it's there or just append)
+        // 1. Create Admin/Citizen
+        console.log('--- Seeding Users ---');
+        const User = require('./models/User');
+        const bcrypt = require('bcryptjs');
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash('123', salt);
+
+        const adminUser = await User.findOne({ email: 'admin@govt.in' });
+        if (!adminUser) {
+            const newAdmin = new User({
+                name: 'System Admin',
+                email: 'admin@govt.in',
+                password: hashedPassword,
+                role: 'admin'
+            });
+            await newAdmin.save();
+            console.log('✅ Admin user created: admin@govt.in / 123');
+        } else {
+            adminUser.password = hashedPassword;
+            await adminUser.save();
+            console.log('🔄 Admin password updated to 123');
+        }
         
         // 4. Create Extensive Seed Gov APIs
         const apis = [

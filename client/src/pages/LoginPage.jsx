@@ -12,8 +12,16 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(formData.email, formData.password);
-            navigate('/dashboard');
+            const { user } = await login(formData.email, formData.password);
+            
+            // Redirect based on role
+            if (user.role === 'admin') {
+                navigate('/admin');
+            } else if (user.role === 'official') {
+                navigate('/official/dashboard');
+            } else {
+                navigate('/dashboard');
+            }
         } catch (err) {
             setError('Invalid credentials');
         }

@@ -312,7 +312,7 @@ const ViewRTI = () => {
                             <Book className="mr-2" size={20} />
                             <h2 className="text-lg font-semibold">Government Response</h2>
                         </div>
-                        {rti.status === 'Response Received' && (
+                        {rti.status === 'Response Received' && complaines.length === 0 && (
                             <button
                                 onClick={analyzeResponse}
                                 disabled={processing}
@@ -479,18 +479,43 @@ const ViewRTI = () => {
                                 </p>
                             </div>
 
-                            {/* 2. Response Status */}
-                            <div className="p-3 rounded border bg-slate-700/30 border-slate-600 text-slate-300">
-                                <div className="flex items-center mb-1">
-                                    <Book size={16} className="mr-2" />
-                                    <span className="font-bold text-sm">Government Response</span>
-                                </div>
-                                {rti.responseDetails ? (
+                            {/* 2. Response Status - Only show if there IS a response */}
+                            {rti.responseDetails && (
+                                <div className="p-3 rounded border bg-slate-700/30 border-slate-600 text-slate-300">
+                                    <div className="flex items-center mb-1">
+                                        <Book size={16} className="mr-2" />
+                                        <span className="font-bold text-sm">Government Response</span>
+                                    </div>
                                     <p className="text-xs line-clamp-3 italic">"{rti.responseDetails}"</p>
-                                ) : (
-                                    <p className="text-xs text-red-400 italic">No response provided yet.</p>
-                                )}
-                            </div>
+                                </div>
+                            )}
+
+                            {/* 3. Admin Resolution Display */}
+                            {complaines[0].status === 'Resolved' && (
+                                <div className="p-3 rounded border bg-green-500/10 border-green-500/30 text-green-300">
+                                    <div className="flex items-center mb-1">
+                                        <CheckCircle size={16} className="mr-2" />
+                                        <span className="font-bold text-sm">Complaint Resolved by Admin</span>
+                                    </div>
+                                    <p className="text-xs border-l-2 border-green-500/50 pl-2 py-1 italic opacity-90 my-1">
+                                        "{complaines[0].adminResponse || "No additional notes provided."}"
+                                    </p>
+                                    {complaines[0].resolvedAt && (
+                                        <p className="text-[10px] opacity-60">Resolved on: {new Date(complaines[0].resolvedAt).toLocaleDateString()}</p>
+                                    )}
+                                </div>
+                            )}
+
+                             {/* 4. Placeholder if neither (should arguably not happen often with current flow but good fallback) */}
+                             {!rti.responseDetails && complaines[0].status !== 'Resolved' && (
+                                <div className="p-3 rounded border bg-slate-700/30 border-slate-600 text-slate-400">
+                                     <div className="flex items-center mb-1">
+                                        <Book size={16} className="mr-2" />
+                                        <span className="font-bold text-sm">Government Response</span>
+                                    </div>
+                                    <p className="text-xs italic">No response provided yet.</p>
+                                </div>
+                             )}
                         </div>
                     </div>
 

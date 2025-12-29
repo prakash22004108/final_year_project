@@ -21,8 +21,15 @@ const ComplaintSchema = new mongoose.Schema({
     }],
     status: {
         type: String,
-        default: 'Draft',
-        enum: ['Draft', 'Filed'],
+        default: 'Received',
+        enum: ['Draft', 'Filed', 'Received', 'Viewed', 'Resolved'],
+    },
+    adminResponse: {
+        type: String,
+        default: '',
+    },
+    resolvedAt: {
+        type: Date,
     }
 }, { timestamps: true });
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Scale, LogOut, User, FilePlus, LayoutDashboard, Menu, X } from 'lucide-react';
+import { Scale, LogOut, User, FilePlus, LayoutDashboard, Menu, X, Gavel } from 'lucide-react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 
@@ -53,18 +53,18 @@ const Navbar = () => {
                                     </>
                                 )}
 
-                                {user?.role === 'official' && (
-                                    <Link to="/official/dashboard" className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-all flex items-center">
-                                        <LayoutDashboard size={18} className="mr-2" /> Dept Dashboard
+                                {user?.role === 'admin' && (
+                                    <Link to="/admin" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all flex items-center">
+                                        <Gavel size={18} className="mr-2" /> Admin Dashboard
                                     </Link>
                                 )}
 
                                 <div className="flex items-center gap-3 border-l border-white/10 pl-4 ml-2">
                                     <div className="text-right hidden md:block">
                                         <p className="text-sm font-semibold text-white">{user.name}</p>
-                                        <p className="text-xs text-purple-400 capitalize">{user.role} {user.department && `(${user.department})`}</p>
+                                        <p className="text-xs text-purple-400 capitalize">{user.role}</p>
                                     </div>
-                                    <button onClick={logout} className="text-slate-400 hover:text-white transition-colors">
+                                    <button onClick={handleLogout} className="text-slate-400 hover:text-white transition-colors">
                                         <LogOut size={20} />
                                     </button>
                                 </div>
@@ -90,9 +90,16 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/dashboard" className="block text-slate-300 hover:text-white py-2" onClick={() => setIsOpen(false)}>Dashboard</Link>
-                            <Link to="/create-rti" className="block text-slate-300 hover:text-white py-2" onClick={() => setIsOpen(false)}>New RTI</Link>
-                            <button onClick={handleLogout} className="block w-full text-left text-red-400 hover:text-red-300 py-2">Logout</button>
+                            {user.role === 'citizen' && (
+                                <>
+                                    <Link to="/dashboard" className="block text-slate-300 hover:text-white py-2" onClick={() => setIsOpen(false)}>Dashboard</Link>
+                                    <Link to="/create-rti" className="block text-slate-300 hover:text-white py-2" onClick={() => setIsOpen(false)}>New RTI</Link>
+                                </>
+                            )}
+                            {user.role === 'admin' && (
+                                <Link to="/admin" className="block text-red-400 hover:text-red-300 py-2" onClick={() => setIsOpen(false)}>Admin Dashboard</Link>
+                            )}
+                            <button onClick={handleLogout} className="block w-full text-left text-slate-400 hover:text-slate-300 py-2 border-t border-white/10 mt-2 pt-2">Logout</button>
                         </>
                     )}
                 </div>

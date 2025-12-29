@@ -23,7 +23,7 @@ exports.generateComplaint = async (req, res) => {
             rtiRequest: rti.id,
             generatedComplaintText: aiResponse?.complaint_text || "Error generating draft.",
             suggestedIPCSections: aiResponse?.suggested_sections || [],
-            status: 'Draft'
+            status: 'Received'
         });
 
         await newComplaint.save();
@@ -35,7 +35,39 @@ exports.generateComplaint = async (req, res) => {
     }
 };
 
-// Get User Complaints
+// Update Complaint Status
+exports.updateComplaintStatus = async (req, res) => {
+    try {
+        const { status, adminResponse } = req.body;
+        
+        const updateData = { status };
+        if (status === 'Resolved') {
+            updateData.resolvedAt = Date.now();
+            if (adminResponse) {
+                updateData.adminResponse = adminResponse;
+            }
+        }
+
+        const complaint = await Complaint.findByIdAndUpdate(
+            req.params.id, 
+            { $set: updateData },
+            { new: true }
+        ).populate('user', 'name email').populate('rtiRequest');
+
+        // SYNC: If Viewed or Resolved, mark the underlying RTI as officerViewed
+        if (status === 'Viewed' || status === 'Resolved') {
+            await RTIRequest.findByIdAndUpdate(complaint.rtiRequest._id, { 
+                $set: { officerViewed: true } 
+            });
+        }
+
+        res.json(complaint);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
 // Get User Complaints
 exports.getUserComplaints = async (req, res) => {
     try {
